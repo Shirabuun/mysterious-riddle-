@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shira's RuneScape Riddle – Advanced</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: #f5f5f5;
+      font-family: 'Segoe UI', sans-serif;
+      max-width: 700px;
+      margin: auto;
+      padding: 2rem;
+    }
+    .section {
+      background-color: #1e1e1e;
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+    h1, h2 {
+      color: #88ccff;
+    }
+    input, button {
+      padding: 0.6rem;
+      font-size: 1rem;
+      border-radius: 5px;
+      border: none;
+      margin-top: 1rem;
+    }
+    button {
+      background-color: #88ccff;
+      color: black;
+      cursor: pointer;
+    }
+    .result {
+      margin-top: 1rem;
+      font-weight: bold;
+      color: #80ff80;
+    }
+    .hidden {
+      display: none;
+    }
+    .prize {
+      background-color: #2a2a2a;
+      border: 2px dashed #88ccff;
+      padding: 1rem;
+      margin-top: 1rem;
+      text-align: center;
+      border-radius: 10px;
+      animation: glow 1.5s infinite alternate;
+    }
+    .prize img {
+      width: 80px;
+      margin-top: 1rem;
+    }
+    @keyframes glow {
+      from { box-shadow: 0 0 10px #88ccff; }
+      to { box-shadow: 0 0 20px #88ccff; }
+    }
+  </style>
+</head>
+<body>
+  <h1>🎵 Shira's Advanced RuneScape Riddle</h1>
+
+  <div class="section" id="step1section">
+    <h2>🎭 Step 1 – Who Watches Time?</h2>
+    <p id="riddle1"></p>
+    <input type="text" id="step1" placeholder="Enter your answer...">
+    <button onclick="checkStep1()">Submit</button>
+    <div class="result" id="result1"></div>
+  </div>
+
+  <div class="section hidden" id="step2section">
+    <h2>🎶 Step 2 – The Musical Code</h2>
+    <p>
+      The song of autumn begins the quest,<br>
+      Its melody puts minds to the test.<br>
+      Take its first four notes, decode their clue —<br>
+      Rearranged, a word will come through.
+    </p>
+    <audio controls>
+      <source src="https://oldschool.runescape.wiki/images/Autumn_Voyage.ogg?87eab" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+    <input type="text" id="step2" placeholder="Enter the hidden word...">
+    <button onclick="checkStep2()">Submit</button>
+    <div class="result" id="result2"></div>
+  </div>
+
+  <div class="section hidden" id="step3section">
+    <h2>💎 Step 3 – Gem of Insight</h2>
+    <p>
+      This gem is blue, it’s not a fake,<br>
+      Found often by a shining lake.<br>
+      You wear it proudly in a ring,<br>
+      A common yet enchanted thing.
+    </p>
+    <input type="text" id="step3" placeholder="Enter the gem...">
+    <button onclick="checkStep3()">Submit</button>
+    <div class="result" id="result3"></div>
+  </div>
+
+  <div class="section hidden" id="finalsection">
+    <h2>🎉 Final Message</h2>
+    <p>
+      Through riddles, lore, and music too,<br>
+      You’ve proven clever, brave, and true.<br>
+      Now Shira grants this tokens bright,<br>  
+    </p>
+    <div class="prize">
+      🏆 <strong>Prize Unlocked!</strong><br>
+      You’ve earned <strong>10 million GP</strong> in-game gold!<br>
+      Screenshot this page and send it to <strong>@Shira</strong> on Discord to claim your reward.<br>
+      <img src="https://oldschool.runescape.wiki/images/thumb/Coins_10000.png/180px-Coins_10000.png" alt="Gold Coins">
+    </div>
+  </div>
+
+  <script>
+    const riddles = [
+      {
+        text: `I walk through the ages, yet never grow old,<br>My footsteps are silent, my stories untold.<br>At Lumbridge I wander, without any plan —<br>They say I'm the first to greet any man.`,
+        answer: 'hans'
+      },
+      {
+        text: `Near a graveyard, I silently wait,<br>Many fear me, for I serve fate.<br>With a hood on my head and darkness in hand —<br>Who am I across the land?`,
+        answer: 'death'
+      },
+      {
+        text: `Born from the ashes of balance and flame,<br>I bring destruction but not for fame.<br>With horns on my brow and chaos in my track —<br>Say my name, and don’t look back.`,
+        answer: 'zamorak'
+      }
+    ];
+
+    const selected = riddles[Math.floor(Math.random() * riddles.length)];
+    document.getElementById('riddle1').innerHTML = selected.text;
+
+    function checkStep1() {
+      const input = document.getElementById('step1').value.trim().toLowerCase();
+      if (input === selected.answer) {
+        document.getElementById('result1').textContent = 'Correct! Let the music guide you next...';
+        document.getElementById('step2section').classList.remove('hidden');
+      } else {
+        document.getElementById('result1').textContent = 'Not quite. Think deeper...';
+      }
+    }
+
+    function checkStep2() {
+      const input = document.getElementById('step2').value.trim().toLowerCase();
+      if (input === 'bade') {
+        document.getElementById('result2').textContent = 'The music speaks true. Onward!';
+        document.getElementById('step3section').classList.remove('hidden');
+      } else {
+        document.getElementById('result2').textContent = 'Try again.';
+      }
+    }
+
+    function checkStep3() {
+      const input = document.getElementById('step3').value.trim().toLowerCase();
+      if (input === 'sapphire') {
+        document.getElementById('result3').textContent = 'The gem of truth is revealed!';
+        document.getElementById('finalsection').classList.remove('hidden');
+      } else {
+        document.getElementById('result3').textContent = 'Hmm... Not the right gem. Try again.';
+      }
+    }
+  </script>
+</body>
+</html>
